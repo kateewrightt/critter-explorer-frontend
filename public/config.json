@@ -1,4 +1,4 @@
 {
-    "backendAPI": "localhost:3000"
-}
+    "backendAPI": "critter-explorer-backend.onrender.com"
+  }
   
