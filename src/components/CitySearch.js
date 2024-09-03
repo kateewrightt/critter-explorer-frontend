@@ -40,7 +40,7 @@ const Search = ({ onSearchChange }) => {
     try {
       const backendURL = await fetchConfig();
       const response = await axios.get(
-        `http://${backendURL}/citySearch?query=${inputValue}`
+        `https://${backendURL}/citySearch?query=${inputValue}`
       );
       const { options } = response.data;
 
@@ -56,7 +56,7 @@ const Search = ({ onSearchChange }) => {
     try {
       const backendURL = await fetchConfig();
       const response = await axios.get(
-        `http://${backendURL}/cityDateTime/${cityId}/dateTime`
+        `https://${backendURL}/cityDateTime/${cityId}/dateTime`
       );
       const { cityDateTime } = response.data;
       const parts = cityDateTime.split("T");

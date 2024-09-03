@@ -14,7 +14,7 @@ const BugModal = ({ isOpen, onRequestClose, bug }) => {
     try {
       const backendURL = await fetchConfig();
       const response = await fetch(
-        `http://${backendURL}/critterImages?bugName=${bugName}`
+        `https://${backendURL}/critterImages?bugName=${bugName}`
       );
 
       if (!response.ok) {
