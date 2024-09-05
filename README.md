@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Critter Explorer 🦋
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hi there! Welcome to **Critter Explorer**, a fun web app that makes your Animal Crossing experience even cooler by blending in-game data with real-world information! 🌍✨
 
-## Available Scripts
+## Table of Contents
+1. **What is Critter Explorer?**
+2. **How to Use the App**
+3. **APIs We Use**
+4. **System Requirements**
+5. **Future Features**
+6. **Troubleshooting**
+7. **Links to the App**
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### 1. What is Critter Explorer? 🐞
+Critter Explorer is an awesome app for Animal Crossing lovers! 🎮✨ It helps you find in-game critters (like bugs) based on the real date and time of your chosen city! Plus, it shows you beautiful real-life images of these critters from the web, making it both fun and educational! 🌿📸
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. How to Use the App 💻
+1. **Enter your city name** (e.g., Brisbane).
+2. **Pick a critter** from the list.
+3. See **when and where that critter is available** in the game.
+4. **Explore real-life images** of your chosen critter and learn more about them! 🦋🌸
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. APIs We Use 🌐
+- **GeoDB Cities API**: For city names and date/time.
+- **Nookipedia API**: For critter details from Animal Crossing.
+- **Flickr API**: To show you cool real-life critter photos!
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 4. System Requirements 🖥️
+- A modern web browser (Chrome, Firefox, Safari, etc.).
+- Internet connection (so you can explore those critters! 🌍).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 5. Future Features 🚀
+We're planning to add some exciting new features, like showing **fish** and **deep-sea creatures** along with the bugs! 🌊🐟 This will make the Critter Explorer even more immersive for all Animal Crossing fans. Stay tuned! 🌧️🌞
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 6. Troubleshooting 🔧
+- If no critters show up, check your internet connection or try a different city.
+- If an error pops up, just refresh the page—it usually fixes things!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 7. Links to the App 🔗
+- **FRONTEND**: [Critter Explorer Frontend](https://critter-explorer.netlify.app/)
+- **BACKEND**: [Critter Explorer Backend](https://critter-explorer-backend.onrender.com/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy exploring the world of critters! 🦋🌍
