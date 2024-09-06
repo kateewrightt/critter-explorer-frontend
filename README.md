@@ -45,6 +45,7 @@ We're planning to add some exciting new features, like showing **fish** and **de
 ---
 
 ### 6. Troubleshooting 🔧
+- The backend is hosted on [**OnRender**](https://render.com/) and takes 1 minute to scale up, please be patient! 
 - If no critters show up, check your internet connection or try a different city.
 - If an error pops up, just refresh the page—it usually fixes things!
 
