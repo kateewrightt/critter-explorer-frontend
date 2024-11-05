@@ -1,116 +1,87 @@
-import "../App.css";
+import '../assets/stylesheets/CritterGrid.css';
 import { useEffect, useState } from "react";
-import BugModal from "./BugModal";
-import { fetchConfig } from "../utils/fetchConfig";
+import CritterModal from "./CritterModal";
+import { fetchConfig } from "../utils/fetchConfig"; 
 import axios from "axios";
 
-// Critter Grid Component
-const Critter = ({ hemisphere, month, timeOfDay }) => {
-  const [bugs, setBugs] = useState([]);
-  const [selectedBug, setSelectedBug] = useState(null);
+// CritterGrid component displays a grid of critters based on user-selected filters for hemisphere, month, and time of day.
+const CritterGrid = ({ hemisphere, month, timeOfDay }) => {
+  const [critters, setCritters] = useState([]); 
+  const [selectedCritter, setSelectedCritter] = useState(null); 
 
-  // Check if a user has selected a bug or not - opens and closes the modal
-  const openModal = (bug) => {
-    setSelectedBug(bug);
-  };
-  const closeModal = () => {
-    setSelectedBug(null);
-  };
+  // Modal open and close handlers for displaying critter details
+  const openModal = (critter) => setSelectedCritter(critter);
+  const closeModal = () => setSelectedCritter(null);
 
-  // Calculates what bugs will be displayed on the screen, uses the user's date/time info and searches the nookipedia results
+  // Converts 12-hour time range to 24-hour format and checks if a given hour is within the range
   const isTimeWithinRange = (timeRange, timeOfDay) => {
     let userHour24 = parseInt(timeOfDay, 10);
-
     try {
       const [startStr, endStr] = timeRange.split(" – ");
       const [time1, period1] = startStr.split(" ");
       const [time2, period2] = endStr.split(" ");
-
-      let hour24_start = parseInt(time1, 10);
-      if (period1 === "PM" && time1 !== 12) {
-        hour24_start += 12;
-      } else if (period1 === "AM" && time1 === 12) {
-        hour24_start = 0;
-      }
-
-      let hour24_end = parseInt(time2, 10);
-      if (period2 === "PM" && time2 !== 12) {
-        hour24_end += 12;
-      } else if (period2 === "AM" && time2 === 12) {
-        hour24_end = 0;
-      }
-
-      if (hour24_start <= hour24_end) {
-        return userHour24 >= hour24_start && userHour24 <= hour24_end;
-      } else {
-        return userHour24 >= hour24_start || userHour24 <= hour24_end;
-      }
-    } catch (error) {
+      let hour24_start = period1 === "PM" && time1 !== "12" ? parseInt(time1, 10) + 12 : parseInt(time1, 10) % 12;
+      let hour24_end = period2 === "PM" && time2 !== "12" ? parseInt(time2, 10) + 12 : parseInt(time2, 10) % 12;
+      return hour24_start <= hour24_end ? userHour24 >= hour24_start && userHour24 <= hour24_end
+                                        : userHour24 >= hour24_start || userHour24 <= hour24_end;
+    } catch {
       return false;
     }
   };
 
-  // UseEffect so if the user changes data (searches another city) then the bugs are changed
+  // Fetches and filters critter data from backend based on the selected hemisphere, month, and time.
   useEffect(() => {
     const fetchData = async () => {
       const backendURL = await fetchConfig();
-
       try {
-        const response = await axios.get(`https://${backendURL}/critterGrid`);
-
-        const data = response.data.critters;
-        const filteredBugs = data.filter((bug) => {
-          const availability =
-            hemisphere === "Northern Hemisphere" ? bug.south : bug.north;
+        const [bugResponse, fishResponse, seaCreatureResponse] = await Promise.all([
+          axios.get(`${backendURL}/bugs`),
+          axios.get(`${backendURL}/fish`),
+          axios.get(`${backendURL}/sea-creatures`)
+        ]);
+        const combinedCritters = [
+          ...bugResponse.data.critters,
+          ...fishResponse.data.critters,
+          ...seaCreatureResponse.data.critters,
+        ];
+        setCritters(combinedCritters.filter(critter => {
+          const availability = hemisphere === "Northern Hemisphere" ? critter.north : critter.south;
           const availableMonths = availability.months_array;
-          const availableTimeOfDay =
-            availability.times_by_month[month.toString()];
-
-          let bugTime = [false];
-
-          if (availableTimeOfDay?.includes("&")) {
-            const [firstStr, secondStr] = availableTimeOfDay?.split(" & ");
-
-            bugTime = isTimeWithinRange(firstStr, timeOfDay);
-            if (bugTime !== true) {
-              bugTime = isTimeWithinRange(secondStr, timeOfDay);
-            }
-          } else if (availableTimeOfDay?.includes("–")) {
-            bugTime = isTimeWithinRange(availableTimeOfDay, timeOfDay);
-          } else if (availableTimeOfDay === "All day") {
-            bugTime = true;
-          }
-          return availableMonths.includes(month) && bugTime === true; // Displays only relevant bugs
-        });
-        setBugs(filteredBugs);
+          const availableTimeOfDay = availability.times_by_month[month.toString()];
+          return availableMonths.includes(month) && (
+            availableTimeOfDay === "All day" || 
+            availableTimeOfDay?.split(" & ").some(range => isTimeWithinRange(range, timeOfDay))
+          );
+        }));
       } catch (error) {
-        console.error("Error fetching bug data: ", error);
+        console.error("Error fetching critter data: ", error);
       }
     };
     fetchData();
-  }, [hemisphere, month, timeOfDay]); // Useffect dependencies - if any of these change it rerenders
+  }, [hemisphere, month, timeOfDay]);
 
-  //Displays the bug grid
+  // Renders the critter grid with modal for critter details
   return (
-    <div className="bug-grid">
-      {bugs.map((bug, index) => (
+    <div className="critter-grid">
+      {critters.map((critter, index) => (
         <div
-          className="bug-card"
-          key={bug.number}
-          onClick={() => openModal(bug)}
+          key={index}
+          className="critter-card"
+          onClick={() => openModal(critter)}
         >
-          <img src={bug.image_url} alt={bug.name} />
-          <p>{bug.name}</p>
+          <img src={critter.image_url} alt={critter.name} />
+          <span className="tooltip">{critter.name}</span>
         </div>
       ))}
 
-      <BugModal
-        isOpen={!!selectedBug}
+      <CritterModal
+        isOpen={!!selectedCritter}
         onRequestClose={closeModal}
-        bug={selectedBug}
+        critter={selectedCritter}
+        hemisphere={hemisphere} 
       />
     </div>
   );
 };
 
-export default Critter;
+export default CritterGrid;
