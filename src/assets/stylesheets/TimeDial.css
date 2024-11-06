@@ -1,0 +1,80 @@
+.time-dial {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 15px;
+    position: relative;
+}
+
+.time-dial-container {
+    flex: 1;
+    min-width: 200px;
+  }
+
+.dial-row {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hour-square {
+    width: 20px;
+    background-color: rgb(235, 223, 152);
+}
+
+.hour-square {
+    height: 20px;
+    border-left: none;
+}
+
+.filled {
+    background-color: #cfce07;
+}
+
+.line {
+    width: 2px;
+    background-color: black;
+    position: relative;
+}
+
+.tall-line {
+    height: 40px;
+}
+
+.short-line {
+    height: 20px;
+}
+
+.label {
+    position: absolute;
+    top: -20px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    width: 40px;
+    transform: translateX(-50%);
+}
+
+.hour-box {
+    height: 10px;
+    margin: 0 1px;
+}
+
+.hour-box.active {
+    background-color: #a4b56c;
+}
+
+.time-row {
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.time-row span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.availability-timeline {
+    text-align: center;
+    margin-top: 20px;
+}
