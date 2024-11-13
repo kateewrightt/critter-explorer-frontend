@@ -50,12 +50,14 @@ Critter Explorer’s design takes cues from Animal Crossing for a familiar look 
 To improve Critter Explorer, we’re working on these features:
 
 #### Completed Enhancements
+- Added fish and sea creatures to the available critters ✅
 - Added filtering by critter type (bug, fish, sea creature) ✅
-- Adjusted layout for smaller screens ✅
 - Updated modal display to show a monthly calendar and time dial ✅
 - Critters show by default before a search is applied ✅
+- Adjusted layout for smaller screens ✅
 - Tooltips added to critter cards for easy reference ✅
 - Themed loading icons for a more engaging experience ✅
+
 
 
 #### Planned Enhancements
