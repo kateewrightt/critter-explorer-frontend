@@ -1,60 +1,82 @@
-# Critter Explorer 🦋
+# Critter Explorer Frontend 🦋
 
 Hi there! Welcome to **Critter Explorer**, a fun web app that makes your Animal Crossing experience even cooler by blending in-game data with real-world information! 🌍✨
 
 ## Table of Contents
-1. **What is Critter Explorer?**
-2. **How to Use the App**
-3. **APIs We Use**
-4. **System Requirements**
-5. **Future Features**
-6. **Troubleshooting**
-7. **Links to the App**
+1. [What is Critter Explorer?](#1-what-is-critter-explorer-)
+2. [Features](#2-features-)
+3. [How to Use the App](#3-how-to-use-the-app-)
+4. [Design & Layout](#4-design--layout-)
+5. [Future Enhancements](#5-future-enhancements-)
+6. [Troubleshooting](#6-troubleshooting-)
+7. [Links to the App](#7-links-to-the-app-)
 
 ---
 
 ### 1. What is Critter Explorer? 🐞
-Critter Explorer is an awesome app for Animal Crossing lovers! 🎮✨ It helps you find in-game critters (like bugs) based on the real date and time of your chosen city! Plus, it shows you beautiful real-life images of these critters from the web, making it both fun and educational! 🌿📸
+**Critter Explorer** is a simple app for Animal Crossing fans. It helps you find critters in the game like bugs, fish, and sea creatures based on the date and time for your selected city. You can also view real-life images of each critter 🌸.
 
 ---
 
-### 2. How to Use the App 💻
-1. **Enter your city name** (e.g., Brisbane).
-2. **Pick a critter** from the list.
-3. See **when and where that critter is available** in the game.
-4. **Explore real-life images** of your chosen critter and learn more about them! 🦋🌸
+### 2. Features 🌟
+- **City-Based Availability**: Set your location to check when critters are available based on real-time data
+- **Responsive Layout**: Works on any device 📱💻
+- **Critter Modal**: See each critter’s details in a modal with availability, images, and extra info
+- **Image Gallery**: Real-life photos of the critters in the game
+- **City Search**: Enter any city to see critters that are active during the current month and time in that location 🌏
 
 ---
 
-### 3. APIs We Use 🌐
-- **GeoDB Cities API**: For city names and date/time.
-- **Nookipedia API**: For critter details from Animal Crossing.
-- **Flickr API**: To show you cool real-life critter photos!
+### 3. How to Use the App 💻
+1. Search for any city to set the location
+2. Browse the list of available critters for that location and time
+3. Click on a critter to open a modal with its availability info and a gallery of real-life images 🦋
 
 ---
 
-### 4. System Requirements 🖥️
-- A modern web browser (Chrome, Firefox, Safari, etc.).
-- Internet connection (so you can explore those critters! 🌍).
+### 4. Design & Layout 🎨
+Critter Explorer’s design takes cues from Animal Crossing for a familiar look and feel. Key design features include:
+
+- **Mobile-Friendly Layout**: Adapts to any screen size to keep the display clear and easy to use
+- **Interactive Elements**: Includes modals, search inputs, and themed loading icons 🔄
+- **Critter Type Filter**: Filter critters by type (bug, fish, or sea creature) for quicker browsing 🐛🐟🐙
+- **Calendar Based on Hemisphere**: Displays a monthly calendar tailored to the selected hemisphere, showing when each critter is active 📅
+- **Time Dial for Availability**: A time dial shows the hours critters are available based on real-world time, helping you track down each critter at just the right moment 🕒
+
 
 ---
 
-### 5. Future Features 🚀
-We're planning to add some exciting new features, like showing **fish** and **deep-sea creatures** along with the bugs! 🌊🐟 This will make the Critter Explorer even more immersive for all Animal Crossing fans. Stay tuned! 🌧️🌞
+### 5. Future Enhancements 🚀
+To improve Critter Explorer, we’re working on these features:
+
+#### Completed Enhancements
+- Added filtering by critter type (bug, fish, sea creature) ✅
+- Adjusted layout for smaller screens ✅
+- Updated modal display to show a monthly calendar and time dial ✅
+- Critters show by default before a search is applied ✅
+- Tooltips added to critter cards for easy reference ✅
+- Themed loading icons for a more engaging experience ✅
+
+
+#### Planned Enhancements
+- **Image Filtering or API Update**: Filter out unrelated gallery images for critters with common names (e.g., “walking stick” returning mobility aids instead of the insect)
+- **Image Caching**: Speed up load times with cached images
 
 ---
 
 ### 6. Troubleshooting 🔧
-- The backend is hosted on [**OnRender**](https://render.com/) and takes 1 minute to scale up, please be patient! 
-- If no critters show up, check your internet connection or try a different city.
-- If an error pops up, just refresh the page—it usually fixes things!
+- **Slow Loading**: The backend is on the free tier of Render, so it may take around 1 minute to start. If it loads slowly, check the [**Backend Link**](https://critter-explorer-backend.onrender.com/) to see if it’s active
 
 ---
 
 ### 7. Links to the App 🔗
-- **FRONTEND**: [Critter Explorer Frontend](https://critter-explorer.netlify.app/)
-- **BACKEND**: [Critter Explorer Backend](https://critter-explorer-backend.onrender.com/)
+- **Frontend**: [Critter Explorer Frontend](https://critter-explorer-2.netlify.app/)
+- **Backend**: [Critter Explorer Backend](https://critter-explorer-backend-2.onrender.com/)
+
+Want to see previous versions? Check out the old frontend and backend from 2023:
+- **Old Frontend (2023)**: [Critter Explorer Frontend - Old Version](https://critter-explorer-frontend.netlify.app/)
+- **Old Backend (2023)**: [Critter Explorer Backend - Old Version](https://critter-explorer-backend.onrender.com/)
 
 ---
 
-Enjoy exploring the world of critters! 🦋🌍
+Thanks for checking out Critter Explorer! 🎉
