@@ -54,6 +54,7 @@ To improve Critter Explorer, we’re working on these features:
 - Added filtering by critter type (bug, fish, sea creature) ✅
 - Updated modal display to show a monthly calendar and time dial ✅
 - Critters show by default before a search is applied ✅
+- Changed date and time format to a more readable style ✅
 - Adjusted layout for smaller screens ✅
 - Tooltips added to critter cards for easy reference ✅
 - Themed loading icons for a more engaging experience ✅
