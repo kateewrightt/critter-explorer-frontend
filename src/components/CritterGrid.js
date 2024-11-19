@@ -56,7 +56,7 @@ const Critter = ({ hemisphere, month, timeOfDay }) => {
       const backendURL = await fetchConfig();
 
       try {
-        const response = await axios.get(`https://${backendURL}/critterGrid`);
+        const response = await axios.get(`${backendURL}/critterGrid`);
 
         const data = response.data.critters;
         const filteredBugs = data.filter((bug) => {
