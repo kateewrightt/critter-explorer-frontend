@@ -1,6 +1,6 @@
 {
     "backendAPI": {
-      "production": "https://critter-explorer-backend.onrender.com",
+      "production": "https://critter-explorer-backend-original2023.onrender.com",
       "development": "http://localhost:3000"
     }
   }
