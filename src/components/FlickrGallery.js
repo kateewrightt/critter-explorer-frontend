@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Spinner } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import "../assets/stylesheets/CritterModal.css";
 import { fetchConfig } from "../utils/fetchConfig";
+import ThemedSpinner from "./ThemedSpinner";
 
-const FlickrGallery = ({ critterName }) => {
+const FlickrGallery = ({ critterName, critterImage, critterType }) => {
   const [flickrImages, setFlickrImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,12 +27,20 @@ const FlickrGallery = ({ critterName }) => {
   
     if (critterName) fetchFlickrPhotos();
   }, [critterName]);
-  
 
+  
   if (loading) {
     return (
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "200px" }}>
-        <Spinner color="secondary" />
+      <div className="flickr-gallery-loading">
+        <ThemedSpinner critterType={critterType} critterImage={critterImage} />
+      </div>
+    );
+  }
+
+  if (!flickrImages.length) {
+    return (
+      <div className="flickr-gallery-no-images">
+        <p>No images found</p>
       </div>
     );
   }
