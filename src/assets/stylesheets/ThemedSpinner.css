@@ -1,0 +1,132 @@
+/* General container styles */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fish-swimming-container,
+.bug-crawling-container,
+.sea-creature-loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.default-icon {
+    width: 30px;
+    height: 30px;
+    opacity: 50%;
+    filter: brightness(0) saturate(100%) sepia(1) hue-rotate(15deg);
+    margin: 2px;
+}
+
+.critter-image {
+    width: 50px;
+    height: 50px;
+    opacity: 50%;
+    filter: brightness(0.8) saturate(100%) sepia(1) hue-rotate(15deg);
+}
+
+/* Animations for all images */
+.swimming-fish {
+    animation: pulse-right 1.5s ease-in-out infinite;
+}
+
+.pulsing-bug {
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.pulsing-octopus {
+    animation: bobbing 1.5s ease-in-out infinite;
+}
+
+/* Keyframes for specific animations */
+@keyframes pulse-right {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes bobbing {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Staggered animation delays for fish images */
+.fish-0 {
+    animation-delay: 0s;
+}
+.fish-1 {
+    animation-delay: 0.2s;
+}
+.fish-2 {
+    animation-delay: 0.4s;
+}
+
+/* Loading text and gallery area styles */
+.loading-text {
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #6c5c48;
+    opacity: 60%;
+}
+
+.flickr-gallery-loading,
+.critter-grid-loading,
+.flickr-gallery-no-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 340px;
+    width: 100%;
+    text-align: center;
+}
+
+.flickr-gallery-no-images p {
+    color: #6c5c48;
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+.gallery-container {
+    min-height: 200px;
+}
+
+
+/* Full Row Layout for 1200px and Above */
+@media (min-width: 1200px) {
+    .full-height {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between; /* Even spacing between items */
+    }
+
+    .image-container,
+    .hemisphere-container,
+    .time-dial-container {
+        width: 33%; /* Equal width distribution */
+        padding: 10px;
+    }
+}
