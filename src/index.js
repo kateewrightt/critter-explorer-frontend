@@ -5,7 +5,7 @@ import App from "./App";
 import { Global, css } from "@emotion/react";
 import reportWebVitals from "./reportWebVitals";
 
-import BackgroundImg from "./assets/background.jpg";
+import BackgroundImg from "./assets/images/background.jpg";
 
 const GlobalStyle = () => (
   <Global
