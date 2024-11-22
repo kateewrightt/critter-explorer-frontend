@@ -1,22 +1,36 @@
-import { useState, useEffect } from "react";
-import "../App.css";
+import { useState } from "react";
+import '../assets/stylesheets/CitySearch.css';
 import { AsyncPaginate } from "react-select-async-paginate";
-import { Row, Col } from "reactstrap";
+import { components } from "react-select";
 import Critter from "./CritterGrid";
 import { fetchConfig } from "../utils/fetchConfig";
+import { FaTimes, FaSearch } from 'react-icons/fa'; 
 import axios from "axios";
 
-// Search component so the user can easily search for cities
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
   const [cityDateTime, setCityDateTime] = useState(null);
   const [hemisphere, setHemisphere] = useState(null);
-  const [userTime, setUserTime] = useState(null);
   const [monthNum, setMonthNum] = useState("");
-  const [datePart, setDatePart] = useState("");
-  const [timePart, setTimePart] = useState("");
+  const [userTime, setUserTime] = useState(null);
+  const [minute, setMinute] = useState(null);
+  const [formattedDateTime, setFormattedDateTime] = useState("");
 
-  // When the user starts typing in the search bar we get the data
+  const CustomDropdownIndicator = (props) => {
+    return (
+        <components.DropdownIndicator {...props}>
+            <FaSearch style={{
+                color: "#c1c1c1",
+                position: "absolute",
+                right: "16px", 
+                top: "50%",
+                fontSize: "0.8em",
+                transform: "translateY(-50%)",
+                pointerEvents: "none" 
+            }} />
+        </components.DropdownIndicator>
+    );
+  };
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     onSearchChange(searchData);
@@ -27,12 +41,20 @@ const Search = ({ onSearchChange }) => {
       );
       fetchCityDateTime(searchData.value);
     } else {
-      setCityDateTime(null);
-      setHemisphere(null);
+      clearSearch(); 
     }
   };
 
-  // Uses api to provide user city options, makes sure we cant receieve an invalid city
+  const clearSearch = () => {
+    setSearch(null);
+    setCityDateTime(null);
+    setHemisphere(null);
+    setMonthNum("");
+    setUserTime(null);
+    setFormattedDateTime("");
+    onSearchChange(null); 
+  };
+
   const loadOptions = async (inputValue) => {
     if (inputValue.length < 1) {
       return Promise.resolve({ options: [] });
@@ -40,7 +62,7 @@ const Search = ({ onSearchChange }) => {
     try {
       const backendURL = await fetchConfig();
       const response = await axios.get(
-        `https://${backendURL}/citySearch?query=${inputValue}`
+        `${backendURL}/citySearch?query=${inputValue}`
       );
       const { options } = response.data;
 
@@ -51,74 +73,116 @@ const Search = ({ onSearchChange }) => {
     }
   };
 
-  // Gets the date and time of the user's chosen city
   const fetchCityDateTime = async (cityId) => {
     try {
       const backendURL = await fetchConfig();
       const response = await axios.get(
-        `https://${backendURL}/cityDateTime/${cityId}/dateTime`
+        `${backendURL}/cityDateTime/${cityId}/dateTime`
       );
       const { cityDateTime } = response.data;
-      const parts = cityDateTime.split("T");
-      setDatePart(parts[0].split("-").reverse().join("-"));
-      setTimePart(parts[1].split(".")[0]);
+  
+      const [datePart, timePart] = cityDateTime.split("T");
+      const [year, month, day] = datePart.split("-");
+      const [hour, minute] = timePart.split(":");
+  
+      const months = [
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+      ];
+      const monthName = months[parseInt(month, 10) - 1];
+  
+      const hourInt = parseInt(hour, 10);
+      const minuteInt = parseInt(minute, 10);
+      const amPm = hourInt >= 12 ? "PM" : "AM";
+      const formattedHour = hourInt % 12 || 12;
+  
+      const formattedDateTime = `${monthName} ${parseInt(day)} at ${formattedHour}:${minute} ${amPm}`;
+      setCityDateTime(cityDateTime);
+      setFormattedDateTime(formattedDateTime);
+      setMonthNum(parseInt(month, 10));
+      setUserTime(hourInt);
+      setMinute(minuteInt);
     } catch (error) {
       console.error("Error fetching city date and time:", error);
     }
-  };
+  };  
 
-  // Use Effect to update monthNum and userTime when datePart or timePart changes
-  useEffect(() => {
-    const [year, month, day] = datePart.split("-");
-    const [hours, minutes, seconds] = timePart.split(":");
-    const cityDate = new Date(year, month - 1, day, hours, minutes, seconds);
-
-    setMonthNum(cityDate.getMonth() + 1);
-    setUserTime(cityDate.getHours());
-  }, [datePart, timePart]);
-
-  // Displays the Search Bar and DateTime Bubbles
   return (
-    <div className="justify-content-center">
+    <div className="search-bar">
       <AsyncPaginate
+      classNamePrefix="custom"
+        components={{ DropdownIndicator: CustomDropdownIndicator }}
+        styles={{
+          control: (provided) => ({
+            ...provided,
+            backgroundColor: "#f9f3d2",
+            borderColor: "#c1c1c1",
+            color: "#4a442e",
+            paddingLeft: "8px",
+          }),
+          placeholder: (provided) => ({
+            ...provided,
+            color: "#4a442e",
+          }),
+          singleValue: (provided) => ({
+            ...provided,
+            color: "#4a442e",
+          }),
+          input: (provided) => ({
+            ...provided,
+            color: "#4a442e",
+            textAlign: "center",
+          }),
+          menu: (provided) => ({
+            ...provided,
+            backgroundColor: "#fffbe6",
+          }),
+          option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused ? "#dace94" : "#fffbe6",
+            color: state.isSelected ? "#ffffff" : "#4a442e",
+          }),
+          indicatorsContainer: (provided) => ({
+            ...provided,
+          }),
+          indicatorSeparator: (provided) => ({
+            ...provided,
+            display: "none", // Hides the dropdown indicator
+          }),
+          loadingIndicator: (provided) => ({
+            ...provided,
+            paddingRight: "20px",
+        }),
+        }}
         placeholder="Search for City"
-        debounceTimeout={600} // Debounce to avoid 429 errors
+        debounceTimeout={600}
         value={search}
         onChange={handleOnChange}
         loadOptions={loadOptions}
       />
-      <Row>
-        {datePart && (
-          <>
-            <Col>
-              <div className="rounded-box">
-                <p style={{ marginTop: "4%" }}>{search.label}</p>
-              </div>
-            </Col>
-            <Col>
-              <div className="rounded-box">
-                <p style={{ marginTop: "4%" }}>
-                  {datePart} {timePart}
-                </p>
-              </div>
-            </Col>
-            <Col>
-              <div className="rounded-box">
-                <p style={{ marginTop: "4%" }}>{hemisphere}</p>
-              </div>
-            </Col>
-          </>
-        )}
-      </Row>
-      <Row>
-        <>
-          <Critter
-            hemisphere={hemisphere}
-            month={monthNum}
-            timeOfDay={userTime}
-          />
-        </>
-      </Row>
+      {formattedDateTime && (
+        <div className="info-bar">
+          <div>
+            <strong>{search.label}</strong>
+          </div>
+          <div>
+            <strong>{formattedDateTime}</strong>
+          </div>
+          <div>
+            <strong>{hemisphere}</strong>
+          </div>
+          <FaTimes onClick={clearSearch} className="clear-icon" />
+        </div>
+      )}
+
+      <div className="critter-grid">
+        <Critter
+          hemisphere={hemisphere}
+          month={monthNum}
+          timeOfDay={userTime}
+          minute={minute}
+        />
+      </div>
     </div>
   );
 };
