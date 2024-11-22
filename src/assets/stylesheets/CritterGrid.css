@@ -1,5 +1,9 @@
-body {
-    overflow-x: hidden;
+html, body {
+    overscroll-behavior: none; /* Prevents bounce effect on scroll */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Avoid horizontal scrolling */
 }
 
 /* Critter Grid Styles */
