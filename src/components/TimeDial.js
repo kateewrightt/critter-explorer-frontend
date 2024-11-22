@@ -11,7 +11,7 @@ const TimeDial = ({ availability }) => {
         if (!availability || !availability.availability_array) return;
       
         availability.availability_array.forEach(({ time }) => {
-          if (!time) return; // Add this line to handle undefined or null time values
+          if (!time) return; 
       
           if (time === "All day") {
             newFilledHours.am = hours;
@@ -56,10 +56,10 @@ const TimeDial = ({ availability }) => {
       
 
     parseAvailability();
-  }, [availability]); // Remove `hours` from dependencies
+  }, [availability]); 
 
   const parseTime = (time) => {
-    if (!time) return [0, "AM"]; // Add a default return for undefined or null values
+    if (!time) return [0, "AM"]; 
   
     const [hour, period] = time.split(" ");
     const hourNum = hour === "12" ? 12 : parseInt(hour) % 12;
