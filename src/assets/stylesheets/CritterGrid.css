@@ -9,7 +9,6 @@ body {
     gap: 10px; 
     justify-content: center; 
     margin: 20px auto;
-    overflow: hidden; /* Prevents overflow */
     max-width: 100%; /* Contain grid within viewport */
 }
   /* Critter Card Styles */
@@ -23,6 +22,7 @@ body {
     align-items: center; 
     justify-content: center; 
     position: relative;
+    cursor: pointer;
   }
   
   /* Image inside Critter Card */
