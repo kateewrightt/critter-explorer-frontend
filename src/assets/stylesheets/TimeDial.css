@@ -6,11 +6,6 @@
     position: relative;
 }
 
-.time-dial-container {
-    flex: 1;
-    min-width: 200px;
-  }
-
 .dial-row {
     display: flex;
     align-items: center;
@@ -49,7 +44,6 @@
     position: absolute;
     top: -20px;
     font-size: 14px;
-    color: #333;
     text-align: center;
     width: 40px;
     transform: translateX(-50%);
