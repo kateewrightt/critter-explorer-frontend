@@ -1,0 +1,300 @@
+/* Modal Styles */
+.modal-background {
+    background-color: rgb(235, 223, 152); /* #f9f3d2; */
+    position: relative;
+    padding-bottom: 0;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    text-transform: capitalize;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+.top-right-close .btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: calc(0.8rem + 1vw);
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Critter Header and Image Styles */
+.critter-name {
+    font-size: calc(1rem + 2vw);
+}
+
+.subheader {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.critter-content {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.small-critter-image {
+    width: 70px;
+    height: 70px;
+    margin-right: 8px;
+}
+
+.large-critter-image {
+    max-width: 100%;
+    min-height: calc(6em + 8.1vw);
+    max-height: calc(6em + 8.1vw);
+    object-fit: contain;
+    border-radius: 8px;
+    margin: auto;
+}
+
+/* Layout Containers */
+.image-container,
+.hemisphere-container,
+.time-dial-container,
+.image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container, .hemisphere-container, .time-dial-container {
+    width: fit-content;
+    flex: 1;
+}
+
+.image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.hemisphere-container, .time-dial-container {
+    flex-direction: column;
+}
+
+/* Availability Grid and Calendar Styles */
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 0;
+}
+
+.calendar-item {
+    padding: 4px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 2px solid rgb(134, 127, 84);
+}
+
+.calendar-item.active {
+    background-color: rgb(197, 199, 13);
+    color: rgb(58, 56, 51);
+}
+
+.calendar-item.inactive {
+    background-color: transparent;
+    color: rgb(206, 197, 139);
+}
+
+/* Time Dial and Header Styles */
+.time-dial-container {
+    width: fit-content;
+    height: auto;
+    flex-grow: 1;
+    padding: 10px 0;
+}
+
+.time-dial-header, .hemisphere-header {
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.time-dial {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Gallery Styles */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-title {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    font-size: calc(1.2rem + 1.5vw);
+}
+
+.gallery-container a {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    text-decoration: none; 
+}
+
+/* Individual Image Styling (No Rounded Corners) */
+.flickr-image-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.flickr-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Full Height Styles */
+.full-height {
+    flex-grow: 1;
+    min-height: 100%;
+    padding: 0 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .full-height {
+        flex-direction: column;
+    }
+
+    .image-container,
+    .hemisphere-container,
+    .time-dial-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 0;
+    }
+
+    .gallery-image-col {
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .month-grid {
+        gap: 4px;
+    }
+
+    .calendar-item {
+        font-size: 13px;
+    }
+
+    .critter-content {
+        font-size: 20px;
+    }
+
+    .subheader {
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .time-dial .tall-line {
+        height: 34px;
+    }
+
+    .time-dial .short-line {
+        height: 14px;
+    }
+
+    .time-dial .hour-square {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .month-grid {
+        gap: 3px;
+    }
+
+    .calendar-item {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .critter-content {
+        font-size: 15px;
+        margin-bottom: 4px;
+        margin-top: 8px;
+    }
+
+    .subheader {
+        margin-bottom: 6px;
+        font-size: 12px;
+    }
+
+    span.label {
+        font-size: 12px;
+    }
+
+    .time-dial .tall-line {
+        height: 20px;
+    }
+
+    .time-dial .short-line {
+        height: 10px;
+    }
+
+    .time-dial .hour-square {
+        width: 8px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .flickr-image-container {
+        width: calc(100px + 1vw);
+        height: calc(100px + 1vw);
+    }
+}
+
+@media (max-width: 320px) {
+    .month-grid {
+        gap: 2px;
+    }
+
+    .calendar-item {
+        font-size: 10px;
+        padding: 2px;
+    }
+
+    .critter-content {
+        font-size: 16px;
+    }
+
+    .subheader {
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+
+    .time-dial .tall-line {
+        height: 18px;
+    }
+
+    .time-dial .short-line {
+        height: 8px;
+    }
+
+    .time-dial .hour-square {
+        width: 8px;
+        height: 8px;
+    }
+}
