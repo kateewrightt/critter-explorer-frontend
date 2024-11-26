@@ -73,7 +73,7 @@ To improve Critter Explorer, we’re working on these features:
 ---
 
 ### 7. Links to the App 🔗
-- **Frontend**: [Critter Explorer Frontend](https://critter-explorer.netlify.app/)
+- **Frontend**: [Critter Explorer Frontend](https://critter-explorer.com/)
 - **Backend**: [Critter Explorer Backend](https://critter-explorer-backend.onrender.com/)
 
 Want to see previous versions? Check out the old frontend and backend from 2023:
