@@ -27,6 +27,8 @@
 /* Critter Header and Image Styles */
 .critter-name {
     font-size: calc(1rem + 2vw);
+    display: flex;
+    align-items: center;
 }
 
 .subheader {
@@ -44,6 +46,7 @@
     width: 70px;
     height: 70px;
     margin-right: 8px;
+    vertical-align: middle;
 }
 
 .large-critter-image {
