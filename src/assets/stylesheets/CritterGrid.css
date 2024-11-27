@@ -1,9 +1,10 @@
 html, body {
-    overscroll-behavior: none; /* Prevents bounce effect on scroll */
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: none;
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-x: hidden; /* Avoid horizontal scrolling */
+    overflow-x: hidden;
 }
 
 /* Critter Grid Styles */
@@ -13,7 +14,7 @@ html, body {
     gap: 10px; 
     justify-content: center; 
     margin: 20px auto;
-    max-width: 100%; /* Contain grid within viewport */
+    max-width: 100%; 
 }
   /* Critter Card Styles */
   .critter-card {
@@ -128,7 +129,7 @@ html, body {
         height: 60px;
     }
     .filter-tabs img {
-        width: 50px; /* Slightly smaller filter tab images */
+        width: 50px; 
         height: 50px;
     }
 }
@@ -143,7 +144,7 @@ html, body {
         height: 50px;
     }
     .filter-tabs img {
-        width: 45px; /* Smaller filter tab images for mobile */
+        width: 45px; 
         height: 45px;
     }
 }
@@ -158,7 +159,7 @@ html, body {
         height: 40px;
     }
     .filter-tabs img {
-        width: 40px; /* Smallest filter tab images for very small screens */
+        width: 40px; 
         height: 40px;
     }
 }
