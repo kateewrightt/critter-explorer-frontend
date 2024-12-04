@@ -1,7 +1,6 @@
 {
     "backendAPI": {
-      "production": "https://critter-explorer-backend.onrender.com",
+      "production": "https://critter-explorer-backend.vercel.app",
       "development": "http://localhost:3000"
     }
   }
-  
