@@ -43,7 +43,6 @@ Critter Explorer’s design takes cues from Animal Crossing for a familiar look 
 - **Calendar Based on Hemisphere**: Displays a monthly calendar tailored to the selected hemisphere, showing when each critter is active 📅
 - **Time Dial for Availability**: A time dial shows the hours critters are available based on real-world time, helping you track down each critter at just the right moment 🕒
 
-
 ---
 
 ### 5. Future Enhancements 🚀
@@ -58,8 +57,8 @@ To improve Critter Explorer, we’re working on these features:
 - Adjusted layout for smaller screens ✅
 - Tooltips added to critter cards for easy reference ✅
 - Themed loading icons for a more engaging experience ✅
-
-
+- Added preloading for Flickr gallery images to reduce perceived load time ✅
+- Migrated the backend from Render to Vercel for faster loading times and better reliability ✅
 
 #### Planned Enhancements
 - **Image Filtering or API Update**: Filter out unrelated gallery images for critters with common names (e.g., “walking stick” returning mobility aids instead of the insect)
@@ -68,13 +67,13 @@ To improve Critter Explorer, we’re working on these features:
 ---
 
 ### 6. Troubleshooting 🔧
-- **Slow Loading**: The backend is on the free tier of Render, so it may take around 1 minute to start. If it loads slowly, check the [**Backend Link**](https://critter-explorer-backend.onrender.com/) to see if it’s active
+- **Slow Loading**: The backend is now hosted on Vercel, which significantly reduces load time compared to the previous Render deployment. If you still experience loading issues, ensure you have a stable internet connection and refresh the page.
 
 ---
 
 ### 7. Links to the App 🔗
 - **Frontend**: [Critter Explorer Frontend](https://critter-explorer.com/)
-- **Backend**: [Critter Explorer Backend](https://critter-explorer-backend.onrender.com/)
+- **Backend**: [Critter Explorer Backend](https://critter-explorer-backend.vercel.app/)
 
 Want to see previous versions? Check out the old frontend and backend from 2023:
 - **Old Frontend (2023)**: [Critter Explorer Frontend - Old Version](https://critter-explorer-original2023.netlify.app/)
