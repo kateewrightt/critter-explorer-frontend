@@ -1,0 +1,27 @@
+/* Availability Grid and Calendar Styles */
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 0;
+}
+
+.calendar-item {
+    padding: 4px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 2px solid rgb(134, 127, 84);
+}
+
+.calendar-item.active {
+    background-color: rgb(197, 199, 13);
+    color: rgb(58, 56, 51);
+}
+
+.calendar-item.inactive {
+    background-color: transparent;
+    color: rgb(206, 197, 139);
+}
