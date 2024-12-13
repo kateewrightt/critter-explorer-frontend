@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../../assets/stylesheets/CritterModal.css';
 import '../../../assets/stylesheets/TimeDial.css';
 
-const TimeDial = ({ availability }) => {
+const TimeDial = ({ availability, timeOfDay, minute }) => {
   const hours = Array.from({ length: 12 }, (_, i) => i + 1);
   const [filledHours, setFilledHours] = useState({ am: [], pm: [] });
 
@@ -86,32 +86,73 @@ const TimeDial = ({ availability }) => {
   const isFilled = (hour, period) => filledHours[period].includes(hour);
   const isTallLine = (index) => [0, 3, 6, 9, 12].includes(index);
 
+  const calculateTimeIndicatorPosition = () => {
+    if (!timeOfDay || minute === undefined) {
+      console.log("No timeOfDay or minute provided. Defaulting to row 0, position 0.");
+      return { row: 0, position: 0 };
+    }
+  
+    const [hour, period] = parseTime(`${timeOfDay} ${minute >= 0 ? "AM" : "PM"}`);
+    const isPM = period === "PM";
+    const hourIndex = hour % 12; 
+    const minutesFraction = minute / 60;
+  
+    const position = {
+      row: isPM ? 1 : 0, 
+      position: hourIndex + minutesFraction,
+    };
+  
+    console.log("Parsed Time - Hour:", hour, "Period:", period);
+    console.log("Calculated Time Indicator Position:", position);
+  
+    return position;
+  };
+  
+
+  const timeIndicator = calculateTimeIndicatorPosition();
+
   return (
     <div className="time-dial-outer-container">
       <div className="time-dial">
         <div className="dial-row">
           {hours.map((hour, index) => (
             <React.Fragment key={`am-${index}`}>
-              <div className={`line ${isTallLine(index) ? 'tall-line' : 'short-line'}`}>
+              <div className={`line ${isTallLine(index) ? "tall-line" : "short-line"}`}>
                 {index === 0 && <span className="label">12AM</span>}
                 {index === 6 && <span className="label">6AM</span>}
               </div>
-              <div className={`hour-square ${isFilled(hour, 'am') ? 'filled' : ''}`}></div>
+              <div className={`hour-square ${isFilled(hour, "am") ? "filled" : ""}`}></div>
             </React.Fragment>
           ))}
           <div className="line tall-line"></div>
+          {timeIndicator.row === 0 && (
+            <div
+              className="time-indicator"
+              style={{ left: `${timeIndicator.position * 8.33}%` }} 
+            >
+              <div className="indicator-line"></div>
+            </div>
+          )}
         </div>
         <div className="dial-row">
           {hours.map((hour, index) => (
             <React.Fragment key={`pm-${index}`}>
-              <div className={`line ${isTallLine(index) ? 'tall-line' : 'short-line'}`}>
+              <div className={`line ${isTallLine(index) ? "tall-line" : "short-line"}`}>
                 {index === 0 && <span className="label">12PM</span>}
                 {index === 6 && <span className="label">6PM</span>}
               </div>
-              <div className={`hour-square ${isFilled(hour, 'pm') ? 'filled' : ''}`}></div>
+              <div className={`hour-square ${isFilled(hour, "pm") ? "filled" : ""}`}></div>
             </React.Fragment>
           ))}
           <div className="line tall-line"></div>
+          {timeIndicator.row === 1 && (
+            <div
+              className="time-indicator"
+              style={{ left: `${timeIndicator.position * 8.33}%` }}
+            >
+              <div className="indicator-line"></div>
+            </div>
+          )}
         </div>
       </div>
     </div>
