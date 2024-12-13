@@ -25,3 +25,8 @@
     background-color: transparent;
     color: rgb(206, 197, 139);
 }
+
+.calendar-item.current-month {
+    border: 2px solid red;
+    border-radius: 4px;
+  }  
