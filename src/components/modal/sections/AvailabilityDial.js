@@ -12,19 +12,17 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
   
       if (!availability || !availability.availability_array) {
         return;
-      }
-    
+      }  
       availability.availability_array.forEach(({ time }, index) => {
         if (!time) {
           return;
-        }
-  
+        }  
         if (time === "All day") {
           newFilledHours.am = hours;
           newFilledHours.pm = hours;
           return;
         }
-  
+
         const timeRanges = time.split(/\s*[;&]\s*/);
         timeRanges.forEach((timeRange) => {
           const timeRangeRegex = /\s*[-–—]\s*/;
@@ -45,10 +43,10 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
               fillHours(newFilledHours, startHour + 1, 12, "PM");
               fillHours(newFilledHours, 1, endHour, "AM");
             }
-          }  
+          }
         });
       });
-    
+
       if (
         JSON.stringify(filledHours.am) !== JSON.stringify(newFilledHours.am) ||
         JSON.stringify(filledHours.pm) !== JSON.stringify(newFilledHours.pm)
@@ -67,7 +65,8 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
     const hour = hourStr.trim();
     const hourNum = hour === "12" ? 12 : parseInt(hour) % 12;
     if (isNaN(hourNum)) {
-      return [0, period || "AM"];
+      console.error(`Invalid hour "${hour}" in time "${time}"`);
+      return [0, period || "AM"]; 
     }
         return [hourNum, period];
   };
@@ -113,7 +112,7 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
 
   const timeIndicator = calculateTimeIndicatorPosition();
 
-  const getRoundedEdges = () => {
+const getRoundedEdges = () => {
     const edges = { am: { first: null, last: null }, pm: { first: null, last: null } };
     const isAllDay = filledHours.am.length === 12 && filledHours.pm.length === 12;
     if (isAllDay) {
@@ -134,7 +133,7 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
         firstAM === 1 && lastAM !== null;
 
     if (isWraparound) {
-        edges.pm.first = firstPM; 
+        edges.pm.first = firstPM;
         edges.am.last = lastAM;
 
         if (firstAM === 12 && filledHours.am.length > 1) {
@@ -151,8 +150,8 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
     
     if (isWraparoundPM) {    
         edges.pm.first = firstPM;
-        edges.pm.last = lastPM; 
-
+        edges.pm.last = lastPM;
+    
         if (filledHours.am.length === 0) {
             for (let i = 1; i <= 12; i++) {
                 if (!filledHours.am.includes(i)) {
@@ -163,7 +162,6 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
     
         edges.am.first = null;
         edges.am.last = null;
-    
         return edges;
     }
     
@@ -188,7 +186,6 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
       } else {
           edges.pm.first = firstPM;
       }
-
       edges.pm.last = lastPM;
 
       if (firstPM === 12 && filledHours.pm.length > 1) {
@@ -200,24 +197,21 @@ const TimeDial = ({ availability, timeOfDay, minute }) => {
       }
     }
 
-    // Specifically hardcoded for Giant Isopod, 9 AM – 4 PM; 9 PM – 4 AM
-    if (filledHours.am.includes(10) && filledHours.pm.includes(4)) {
-      edges.am.first = 10; 
-      edges.am.last = 4;  
-      edges.pm.first = 10; 
-      edges.pm.last = 4;  
-
-      if (filledHours.pm.includes(9)) {
-          edges.pm.first = 9;
-      }
-      if (!filledHours.pm.includes(12)) {
-          edges.pm.last = 4; 
-      }
-
-      return edges;
+    // Hardcoded for Giant Isopod -> 9 AM – 4 PM ; 9 PM – 4 AM
+    const isSpecificRange =
+        filledHours.am.length === 7 && filledHours.am[0] === 10 && filledHours.am[filledHours.am.length - 1] === 4 &&
+        filledHours.pm.length === 7 && filledHours.pm[0] === 1 && filledHours.pm[filledHours.pm.length - 1] === 12;
+    
+    if (isSpecificRange) {
+        edges.am.first = 10; 
+        edges.am.last = 4; 
+        edges.pm.first = 10;  
+        edges.pm.last = 4;   
+    
+        return edges;
     }
-    return edges;
-};
+    return edges;  
+  };
 
   const roundedEdges = getRoundedEdges();
 
